@@ -1,0 +1,9 @@
+<mat-nav-list>
+  <div *ngFor="let client of clientsList" class="">
+    <a mat-list-item routerLink="/client/{{client.general.firstName}}">
+      <img matListAvatar src="{{client.general.avatar}}">
+      <h3 matLine> {{client.general.lastName}} {{client.general.firstName}} </h3>
+      <h4 matLine> {{client.job.company}} </h4>
+    </a>
+  </div>
+</mat-nav-list>
