@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ClientsListService } from "./clients-list.service";
+import { ClientsService } from "../clients.service";
 import { Client } from "../Client";
 
 @Component({
@@ -8,13 +8,23 @@ import { Client } from "../Client";
   styleUrls: ["./clients-list.component.css"]
 })
 export class ClientsListComponent implements OnInit {
-  clientsList: Client[];
-  constructor(private clientsListService: ClientsListService) {}
+  clientsList: Client[] = [];
+  constructor(private clientsService: ClientsService) {}
+
+  onKeyUp(e) {
+    this.clientsService.getClientList().subscribe((clientsList: Client[]) => {
+      this.clientsList = clientsList.filter(
+        client =>
+          client.general.firstName
+            .toLowerCase()
+            .indexOf(e.target.value.toLowerCase()) !== -1
+      );
+    });
+  }
 
   ngOnInit() {
-    this.clientsListService.getClientList().subscribe((data: Client[]) => {
-      this.clientsList = data;
-      console.log(this.clientsList);
+    this.clientsService.getClientList().subscribe((clientsList: Client[]) => {
+      this.clientsList = clientsList;
     });
   }
 }

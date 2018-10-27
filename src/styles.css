@@ -12,7 +12,14 @@ body {
   border: 1px solid gray;
 }
 .mat-list-item:focus {
-  background-color: lightgray !important;
+  /* background-color: lightgray !important; */
   border: 2px solid gray;
   border-right: none;
+}
+.mat-card,
+.mat-list-item {
+  box-shadow: 0 0 5px gray !important;
+}
+.mat-card-image {
+  width: 128px;
 }

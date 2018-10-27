@@ -1,9 +1,14 @@
-<mat-nav-list>
-  <div *ngFor="let client of clientsList" class="">
-    <a mat-list-item routerLink="/client/{{client.general.firstName}}">
-      <img matListAvatar src="{{client.general.avatar}}">
-      <h3 matLine> {{client.general.lastName}} {{client.general.firstName}} </h3>
-      <h4 matLine> {{client.job.company}} </h4>
-    </a>
-  </div>
-</mat-nav-list>
+<div *ngIf="clientsList">
+  <mat-nav-list>
+    <mat-form-field class="example-full-width w-100">
+      <input matInput placeholder="Search" value="" (keyup)="onKeyUp($event)">
+    </mat-form-field>
+    <div *ngFor="let client of clientsList" class="">
+      <a mat-list-item routerLink="/client/{{client.general.firstName}}" class="mb-1">
+        <img matListAvatar src="{{client.general.avatar}}">
+        <h3 matLine> {{client.general.firstName}} </h3>
+        <h4 matLine> {{client.job.company}} </h4>
+      </a>
+    </div>
+  </mat-nav-list>
+</div>
